@@ -2059,12 +2059,12 @@ func (l participantTelemetryListener) OnTrackSubscribeFailed(pID livekit.Partici
 func (l participantTelemetryListener) OnTrackSubscribeStreamStarted(pID livekit.ParticipantID, ti *livekit.TrackInfo) {
 }
 
-func (l participantTelemetryListener) OnTrackMuted(pID livekit.ParticipantID, ti *livekit.TrackInfo) {
-	l.room.telemetry.TrackMuted(context.Background(), l.room.ID(), l.room.Name(), pID, ti)
+func (l participantTelemetryListener) OnTrackMuted(pID livekit.ParticipantID, ident livekit.ParticipantIdentity, ti *livekit.TrackInfo) {
+	l.room.telemetry.TrackMuted(context.Background(), l.room.ID(), l.room.Name(), pID, ident, ti)
 }
 
-func (l participantTelemetryListener) OnTrackUnmuted(pID livekit.ParticipantID, ti *livekit.TrackInfo) {
-	l.room.telemetry.TrackUnmuted(context.Background(), l.room.ID(), l.room.Name(), pID, ti)
+func (l participantTelemetryListener) OnTrackUnmuted(pID livekit.ParticipantID, ident livekit.ParticipantIdentity, ti *livekit.TrackInfo) {
+	l.room.telemetry.TrackUnmuted(context.Background(), l.room.ID(), l.room.Name(), pID, ident, ti)
 }
 
 func (l participantTelemetryListener) OnTrackPublishedUpdate(pID livekit.ParticipantID, ti *livekit.TrackInfo) {

@@ -421,10 +421,21 @@ func (t *telemetryService) TrackMuted(
 	roomID livekit.RoomID,
 	roomName livekit.RoomName,
 	participantID livekit.ParticipantID,
+	identity livekit.ParticipantIdentity,
 	track *livekit.TrackInfo,
 ) {
 	t.enqueue(func() {
 		room := toMinimalRoomProto(roomID, roomName)
+		participant := &livekit.ParticipantInfo{
+			Sid:      string(participantID),
+			Identity: string(identity),
+		}
+		t.NotifyEvent(ctx, &livekit.WebhookEvent{
+			Event:       webhook.EventTrackMuted,
+			Room:        room,
+			Participant: participant,
+			Track:       track,
+		})
 		t.SendEvent(ctx, newTrackEvent(livekit.AnalyticsEventType_TRACK_MUTED, room, participantID, track))
 	})
 }
@@ -434,10 +445,21 @@ func (t *telemetryService) TrackUnmuted(
 	roomID livekit.RoomID,
 	roomName livekit.RoomName,
 	participantID livekit.ParticipantID,
+	identity livekit.ParticipantIdentity,
 	track *livekit.TrackInfo,
 ) {
 	t.enqueue(func() {
 		room := toMinimalRoomProto(roomID, roomName)
+		participant := &livekit.ParticipantInfo{
+			Sid:      string(participantID),
+			Identity: string(identity),
+		}
+		t.NotifyEvent(ctx, &livekit.WebhookEvent{
+			Event:       webhook.EventTrackUnmuted,
+			Room:        room,
+			Participant: participant,
+			Track:       track,
+		})
 		t.SendEvent(ctx, newTrackEvent(livekit.AnalyticsEventType_TRACK_UNMUTED, room, participantID, track))
 	})
 }
