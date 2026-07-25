@@ -2029,58 +2029,58 @@ type participantTelemetryListener struct {
 }
 
 func (l participantTelemetryListener) OnTrackPublishRequested(pID livekit.ParticipantID, identity livekit.ParticipantIdentity, ti *livekit.TrackInfo) {
-	l.room.telemetry.TrackPublishRequested(context.Background(), l.room.ID(), l.room.Name(), pID, identity, ti)
+	l.room.telemetry.TrackPublishRequested(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, identity, ti)
 }
 
 func (l participantTelemetryListener) OnTrackPublished(pID livekit.ParticipantID, identity livekit.ParticipantIdentity, ti *livekit.TrackInfo, shouldSendEvent bool) {
-	l.room.telemetry.TrackPublished(context.Background(), l.room.ID(), l.room.Name(), pID, identity, ti, shouldSendEvent)
+	l.room.telemetry.TrackPublished(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, identity, ti, shouldSendEvent)
 }
 
 func (l participantTelemetryListener) OnTrackUnpublished(pID livekit.ParticipantID, identity livekit.ParticipantIdentity, ti *livekit.TrackInfo, shouldSendEvent bool) {
-	l.room.telemetry.TrackUnpublished(context.Background(), l.room.ID(), l.room.Name(), pID, identity, ti, shouldSendEvent)
+	l.room.telemetry.TrackUnpublished(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, identity, ti, shouldSendEvent)
 }
 
 func (l participantTelemetryListener) OnTrackSubscribeRequested(pID livekit.ParticipantID, ti *livekit.TrackInfo) {
-	l.room.telemetry.TrackSubscribeRequested(context.Background(), l.room.ID(), l.room.Name(), pID, ti)
+	l.room.telemetry.TrackSubscribeRequested(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, ti)
 }
 
 func (l participantTelemetryListener) OnTrackSubscribed(pID livekit.ParticipantID, ti *livekit.TrackInfo, publisherInfo *livekit.ParticipantInfo, shouldSendEvent bool) {
-	l.room.telemetry.TrackSubscribed(context.Background(), l.room.ID(), l.room.Name(), pID, ti, publisherInfo, shouldSendEvent)
+	l.room.telemetry.TrackSubscribed(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, ti, publisherInfo, shouldSendEvent)
 }
 
 func (l participantTelemetryListener) OnTrackUnsubscribed(pID livekit.ParticipantID, ti *livekit.TrackInfo, shouldSendEvent bool) {
-	l.room.telemetry.TrackUnsubscribed(context.Background(), l.room.ID(), l.room.Name(), pID, ti, shouldSendEvent)
+	l.room.telemetry.TrackUnsubscribed(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, ti, shouldSendEvent)
 }
 
 func (l participantTelemetryListener) OnTrackSubscribeFailed(pID livekit.ParticipantID, trackID livekit.TrackID, err error, isUserError bool) {
-	l.room.telemetry.TrackSubscribeFailed(context.Background(), l.room.ID(), l.room.Name(), pID, trackID, err, isUserError)
+	l.room.telemetry.TrackSubscribeFailed(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, trackID, err, isUserError)
 }
 
 func (l participantTelemetryListener) OnTrackSubscribeStreamStarted(pID livekit.ParticipantID, ti *livekit.TrackInfo) {
 }
 
 func (l participantTelemetryListener) OnTrackMuted(pID livekit.ParticipantID, ident livekit.ParticipantIdentity, ti *livekit.TrackInfo) {
-	l.room.telemetry.TrackMuted(context.Background(), l.room.ID(), l.room.Name(), pID, ident, ti)
+	l.room.telemetry.TrackMuted(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, ident, ti)
 }
 
 func (l participantTelemetryListener) OnTrackUnmuted(pID livekit.ParticipantID, ident livekit.ParticipantIdentity, ti *livekit.TrackInfo) {
-	l.room.telemetry.TrackUnmuted(context.Background(), l.room.ID(), l.room.Name(), pID, ident, ti)
+	l.room.telemetry.TrackUnmuted(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, ident, ti)
 }
 
 func (l participantTelemetryListener) OnTrackPublishedUpdate(pID livekit.ParticipantID, ti *livekit.TrackInfo) {
-	l.room.telemetry.TrackPublishedUpdate(context.Background(), l.room.ID(), l.room.Name(), pID, ti)
+	l.room.telemetry.TrackPublishedUpdate(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, ti)
 }
 
 func (l participantTelemetryListener) OnTrackMaxSubscribedVideoQuality(pID livekit.ParticipantID, ti *livekit.TrackInfo, mime mime.MimeType, maxQuality livekit.VideoQuality) {
-	l.room.telemetry.TrackMaxSubscribedVideoQuality(context.Background(), l.room.ID(), l.room.Name(), pID, ti, mime, maxQuality)
+	l.room.telemetry.TrackMaxSubscribedVideoQuality(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, ti, mime, maxQuality)
 }
 
 func (l participantTelemetryListener) OnTrackPublishRTPStats(pID livekit.ParticipantID, trackID livekit.TrackID, mimeType mime.MimeType, layer int, stats *livekit.RTPStats) {
-	l.room.telemetry.TrackPublishRTPStats(context.Background(), l.room.ID(), l.room.Name(), pID, trackID, mimeType, layer, stats)
+	l.room.telemetry.TrackPublishRTPStats(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, trackID, mimeType, layer, stats)
 }
 
 func (l participantTelemetryListener) OnTrackSubscribeRTPStats(pID livekit.ParticipantID, trackID livekit.TrackID, mimeType mime.MimeType, stats *livekit.RTPStats) {
-	l.room.telemetry.TrackSubscribeRTPStats(context.Background(), l.room.ID(), l.room.Name(), pID, trackID, mimeType, stats)
+	l.room.telemetry.TrackSubscribeRTPStats(context.Background(), l.room.ID(), l.room.Name(), l.room.protoRoom.Metadata, pID, trackID, mimeType, stats)
 }
 
 func (l participantTelemetryListener) OnTrackStats(key telemetry.StatsKey, stat *livekit.AnalyticsStat) {
